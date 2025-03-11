@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -8,8 +7,7 @@
     <artifactId>WebApp</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-
-    <name>WebApp</name>a
+    <name>WebApp</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,12 +20,15 @@
         <lombok.version>1.18.30</lombok.version>
 
         <primefaces.version>13.0.4</primefaces.version>
+
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
+            <artifactId>jakarta.jakartaee-web-api</artifactId>
             <version>${jakartaee.version}</version>
             <scope>provided</scope>
         </dependency>
@@ -59,7 +60,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <annotationProcessorPaths>
                         <path>
@@ -70,11 +71,39 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.4.0</version>
+                <version>${maven-war-plugin.version}</version>
             </plugin>
+
+            <!-- Source: https://tomee.apache.org/latest/docs/developer/tools/maven/tomee.html -->
+            <!-- Execute 'mvn clean package tomee:run' to run the application. -->
+            <plugin>
+                <groupId>org.apache.tomee.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>${tomee.version}</version>
+                <configuration>
+                    <tomeeVersion>${tomee.version}</tomeeVersion>
+                    <tomeeClassifier>plume</tomeeClassifier>
+                    <removeDefaultWebapps>true</removeDefaultWebapps>
+
+                    <forceReloadable>true</forceReloadable>
+
+                    <!-- Configure HTTP Port -->
+                    <tomeeAjpPort>8009</tomeeAjpPort>
+                    <tomeeShutdownPort>8005</tomeeShutdownPort>
+
+                    <tomeeHttpPort>8081</tomeeHttpPort>
+                    <!-- Open via: localhost:8081/WebApp -->
+
+                    <!-- Configure HTTPS Port -->
+                    <!-- TODO -->
+                </configuration>
+
+            </plugin>
+
         </plugins>
     </build>
 </project>
