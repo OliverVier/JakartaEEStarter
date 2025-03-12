@@ -11,6 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
 
@@ -52,7 +53,38 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
+
+
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit</artifactId>
+            <version>1.4.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Test Dependencies End -->
+
+
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.11.4</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -78,8 +110,6 @@
                 <version>${maven-war-plugin.version}</version>
             </plugin>
 
-            <!-- Source: https://tomee.apache.org/latest/docs/developer/tools/maven/tomee.html -->
-            <!-- Execute 'mvn clean package tomee:run' to run the application. -->
             <plugin>
                 <groupId>org.apache.tomee.maven</groupId>
                 <artifactId>tomee-maven-plugin</artifactId>
@@ -98,11 +128,16 @@
                     <tomeeHttpPort>8081</tomeeHttpPort>
                     <!-- Open via: localhost:8081/WebApp -->
 
-                    <!-- Configure HTTPS Port -->
-                    <!-- TODO -->
                 </configuration>
 
             </plugin>
+
+            <!-- used in conjunction with junit 5 -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.2</version>
+            </plugin>
+
 
         </plugins>
     </build>
