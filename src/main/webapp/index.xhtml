@@ -12,11 +12,11 @@
     <h1>Welcome</h1>
     <h:form>
         <h:outputLabel for="name" value="Enter your name:" />
-        <h:inputText id="name" value="#{userBean.name}" />
-        <h:commandButton value="Submit" action="#{userBean.greet}" />
+        <h:inputText id="name" value="#{greeterBean.name}" />
+        <h:commandButton value="Submit" action="#{greeterBean.greet}" />
         <br/>
         <br/>
-        <h:outputText value="#{userBean.greeting}" rendered="#{not empty userBean.greeting}" />
+        <h:outputText value="#{greeterBean.greeting}" rendered="#{not empty greeterBean.greeting}" />
     </h:form>
 </h:body>
 </html>

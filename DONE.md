@@ -1,9 +1,9 @@
 # DONE
 
-- Startup integrated TomEE Webserver (see [documentation](https://tomee.apache.org/latest/docs/developer/tools/maven/tomee.html) for further hints)
-    ````
-    mvn clean compile tomee:run
-    ````
+- Integrated TomEE
 - ArchUnit integration to check for the following rules
     - No Usage of java.util.Date
     - No Usage of persistence technology
+
+- PMD Integration at least for Best Practices
+- Logging via CDI for non-passivating scoped Beans (not session scoped)

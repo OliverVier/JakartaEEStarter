@@ -12,8 +12,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <jdkTargetVersion>17</jdkTargetVersion>
+        <maven.compiler.source>${jdkTargetVersion}</maven.compiler.source>
+        <maven.compiler.target>${jdkTargetVersion}</maven.compiler.target>
 
         <tomee.version>10.0.0</tomee.version>
         <jakartaee.version>10.0.0</jakartaee.version>
@@ -24,9 +25,12 @@
 
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
+        <maven-pmd-plugin.version>3.23.0</maven-pmd-plugin.version>
     </properties>
 
     <dependencies>
+
+        <!-- UI Dependencies -->
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-web-api</artifactId>
@@ -46,14 +50,29 @@
             <artifactId>commons-text</artifactId>
             <version>1.13.0</version>
         </dependency>
+        <!-- UI Dependencies end -->
 
+        <!-- Logging -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.17</version>
+        </dependency>
+        <!-- Logging end -->
+
+        <!-- Supporting libraries -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
-
+        <!-- Supporting libraries end -->
 
         <!-- Test Dependencies -->
         <dependency>
@@ -93,7 +112,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
+
                 <configuration>
+                    <source>${jdkTargetVersion}</source>
+                    <target>${jdkTargetVersion}</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -129,7 +151,6 @@
                     <!-- Open via: localhost:8081/WebApp -->
 
                 </configuration>
-
             </plugin>
 
             <!-- used in conjunction with junit 5 -->
@@ -139,6 +160,46 @@
             </plugin>
 
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${maven-pmd-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>compile</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <targetJdk>${jdkTargetVersion}</targetJdk>
+
+                    <rulesets>
+                        <!-- Java best practices - bundled with PMD -->
+                        <ruleset>/category/java/bestpractices.xml</ruleset>
+                        <!-- custom rules addition -->
+                        <ruleset>src/main/resources/pmd-ruleset.xml</ruleset>
+                    </rulesets>
+
+                    <failOnViolation>true</failOnViolation>
+                    <printFailingErrors>true</printFailingErrors>
+
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+
+    <reporting>
+        <plugins>
+            <!-- related to PMD -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>3.6.0</version>
+            </plugin>
+        </plugins>
+    </reporting>
+
 </project>

@@ -4,7 +4,7 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 
 import org.junit.jupiter.api.Test;
 
-public class ArchUnitTests {
+class ArchUnitTests {
 
     @Test
     void useModernDateApi() {
