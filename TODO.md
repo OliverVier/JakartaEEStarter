@@ -9,7 +9,7 @@
 
 ## pom.xml
 
-Check whether we need this when we are using the jakartaee-web-api upfront
+- Check whether we need this when we are using the jakartaee-web-api upfront
     <dependency>
         <groupId>jakarta.faces</groupId>
         <artifactId>jakarta.faces-api</artifactId>

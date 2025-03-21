@@ -146,23 +146,23 @@
 
             <plugin>
                 <groupId>org.apache.tomee.maven</groupId>
-                <artifactId>tomee-maven-plugin</artifactId>
+                <artifactId>tomee-embedded-maven-plugin</artifactId>
                 <version>${tomee.version}</version>
                 <configuration>
-                    <tomeeVersion>${tomee.version}</tomeeVersion>
-                    <tomeeClassifier>plume</tomeeClassifier>
-                    <removeDefaultWebapps>true</removeDefaultWebapps>
+                    <httpPort>8081</httpPort>
+                    <ajpPort>8009</ajpPort>
+                    <stopPort>8005</stopPort>
 
-                    <forceReloadable>true</forceReloadable>
-
-                    <!-- Configure HTTP Port -->
-                    <tomeeAjpPort>8009</tomeeAjpPort>
-                    <tomeeShutdownPort>8005</tomeeShutdownPort>
-
-                    <tomeeHttpPort>8081</tomeeHttpPort>
-                    <!-- Open via: localhost:8081/WebApp -->
-
+                    <context>/WebApp</context>
+                    <classpathAsWar>true</classpathAsWar>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- used in conjunction with junit 5 -->

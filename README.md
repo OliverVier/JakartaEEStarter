@@ -5,9 +5,11 @@ This example project should provide a starting point for JakartaEE Web Applicati
 - JakartaEE 10+
 - Tomee 10+
 
-## Startup integrated TomEE Webserver (see [documentation](https://tomee.apache.org/latest/docs/developer/tools/maven/tomee.html) for further hints)
+## Startup embedded TomEE Webserver (see [documentation](https://tomee.apache.org/latest/docs/developer/tools/maven/tomee.html) for further hints)
+
+- Startup a local server for development (hot reloads current project sources)
     ````
-    mvn clean compile tomee:run
+    mvn tomee-embedded:run
     ````
 
 ## Build
