@@ -1,9 +1,11 @@
 # TODO
 
+- Globalattributes
+- Favicon
+- Stylesheet
 - Configure SSL Connection
 - Add simple Primefaces Datatable
-- Integrate Omnifaces
-
+- Integrate Omnifaces (e.g. for AjaxViewExpired Handling)
 
 ## pom.xml
 

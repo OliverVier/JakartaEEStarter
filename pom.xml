@@ -15,21 +15,19 @@
         <jdkTargetVersion>17</jdkTargetVersion>
         <maven.compiler.source>${jdkTargetVersion}</maven.compiler.source>
         <maven.compiler.target>${jdkTargetVersion}</maven.compiler.target>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
+        <maven-pmd-plugin.version>3.23.0</maven-pmd-plugin.version>
+
+        <lombok.version>1.18.30</lombok.version>
 
         <tomee.version>10.0.0</tomee.version>
         <jakartaee.version>10.0.0</jakartaee.version>
 
-        <lombok.version>1.18.30</lombok.version>
-
-        <primefaces.version>13.0.4</primefaces.version>
-
-        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
-        <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
-        <maven-pmd-plugin.version>3.23.0</maven-pmd-plugin.version>
+        <primefaces.version>15.0.1</primefaces.version>
     </properties>
 
     <dependencies>
-
         <!-- UI Dependencies -->
         <dependency>
             <groupId>jakarta.platform</groupId>
@@ -37,14 +35,12 @@
             <version>${jakartaee.version}</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>${primefaces.version}</version>
             <classifier>jakarta</classifier>
         </dependency>
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-text</artifactId>
@@ -72,6 +68,11 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.instancio</groupId>
+            <artifactId>instancio-core</artifactId>
+            <version>5.4.0</version>
+        </dependency>
         <!-- Supporting libraries end -->
 
         <!-- Test Dependencies -->
@@ -81,16 +82,24 @@
             <version>1.4.0</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.23.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.26.3</version>
+            <scope>test</scope>
+        </dependency>
         <!-- Test Dependencies End -->
-
-
     </dependencies>
 
     <dependencyManagement>
@@ -104,6 +113,9 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+
+
 
     <build>
         <finalName>${project.artifactId}</finalName>

@@ -1,7 +1,4 @@
-package de.sdo.demo;
-
-import java.io.Serial;
-import java.io.Serializable;
+package de.sdo.demo.examples;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -18,17 +15,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @Named
 @RequestScoped
-public class GreeterBean implements Serializable {
+public class GreetingsController {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
     private Logger logger;
 
     private String name;
     private String greeting;
 
     @Inject
-    public GreeterBean(Logger logger) {
+    public GreetingsController(Logger logger) {
         this.logger = logger;
     }
 

@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/templates/template.xhtml">
+
+    <ui:define name="title">
+        Simple Datatable Example
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <div class="card">
+                <p:dataTable value="#{simpleDataTableExampleController.products}" var="row">
+                    <p:column headerText="productName" field="productName"/>
+                    <p:column headerText="price" field="price"/>
+                    <p:column headerText="releaseDate" field="releaseDate"/>
+                    <p:column headerText="description" field="description"/>
+                    <p:column headerText="imageUrl" field="imageUrl"/>
+                    <p:column headerText="category" field="category"/>
+                    <p:column headerText="brand" field="brand"/>
+                    <p:column headerText="sku" field="sku"/>
+                </p:dataTable>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

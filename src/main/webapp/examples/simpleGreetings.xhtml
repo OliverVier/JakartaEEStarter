@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/templates/template.xhtml">
+
+    <ui:define name="title">
+        Simple Greetings Example
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h:outputLabel for="name" value="Enter your name:"/>
+            <h:inputText id="name" value="#{greetingsController.name}"/>
+            <h:commandButton value="Submit" action="#{greetingsController.greet}"/>
+            <br/>
+            <br/>
+            <h:outputText
+                    value="#{greetingsController.greeting}"
+                    rendered="#{not empty greetingsController.greeting}"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
