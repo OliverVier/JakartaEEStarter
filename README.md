@@ -1,3 +1,7 @@
+# Fork
+This fork serves to create a out-of-box experience for setting up a Jakarta project in multiple 
+IDEs (mainly Eclipse and IDEA) and to gather feedback for the main repository.
+
 # JakartaEEStarter
 
 This example project should provide a starting point for JakartaEE Web Application development on basis of 
